@@ -7,6 +7,10 @@
 # ---------------------------------------------------------------------------
 data/
 
+# Temporary root-level PDF/HTML renders (canonical copies live in docs/reports/)
+physics_vs_ml_ocean_prediction_report.pdf
+physics_vs_ml_ocean_prediction_report_tmp.html
+
 # ---------------------------------------------------------------------------
 # 2. Large ML model weights (binary, reproducible by re-running scripts)
 # ---------------------------------------------------------------------------

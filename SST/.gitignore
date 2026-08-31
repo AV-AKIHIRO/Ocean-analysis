@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints
+*.egg-info/
+.venv/
+env/
+venv/
+ENV/
+
+# Large Datasets
+*.nc
+*.nc4
+*.h5
+*.dat
+data/
+
+# Archives & Temporary files
+*.zip
+*.tar.gz
+*.tmp
+*.log
+paper_text.txt
+
+# OS and Editor
+.DS_Store
+.vscode/
+.idea/
+

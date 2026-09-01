@@ -11,8 +11,8 @@
 * **Paper Title**: *The ocean carbon sinks and climate change*
 * **Authors**: Eros M. Sunny, Balakrishnan Ashok, Janaki Balakrishnan, and Jürgen Kurths
 * **Journal**: *Chaos: An Interdisciplinary Journal of Nonlinear Science*, Vol. 33, Issue 10, Art. No. 103134 (2023)
-* **DOI**: [10.1063/5.0152504](https://doi.org/10.1063/5.0152504)
-* **Local Workspace File**: [ba_chaos_X23.pdf](file:///mnt/c/Users/Areen%20Vaghasiya/OneDrive%20-%20iiit-b/Courses/Areen%20SEM9/Ocean%20analysis/ba_chaos_X23.pdf)
+<!-- * **DOI**: [10.1063/5.0152504](https://doi.org/10.1063/5.0152504) -->
+<!-- * **Local Workspace File**: [ba_chaos_X23.pdf](file:///mnt/c/Users/Areen%20Vaghasiya/OneDrive%20-%20iiit-b/Courses/Areen%20SEM9/Ocean%20analysis/ba_chaos_X23.pdf) -->
 * **Usage**: Provides the theoretical framework, salinity evolution equations, density-driven flow formulation ($q_{ij}$), box volume parameters, and baseline year 2000 constant freshwater flux assumptions ($F_{\text{NA}}, F_{\text{SA}}, F_{\text{SO}}, F_{\text{PO}}, F_{\text{IO}}$).
 
 ---
@@ -21,7 +21,7 @@
 
 ### A. Dataset Metadata & Identification
 * **Dataset Title**: Hamburg Ocean Atmosphere Parameters and Fluxes from Satellite Data (HOAPS), Version 4.0
-* **Product Identifier / DOI**: [10.5676/EUM_SAF_CM/HOAPS/V002](https://doi.org/10.5676/EUM_SAF_CM/HOAPS/V002)
+<!-- * **Product Identifier / DOI**: [10.5676/EUM_SAF_CM/HOAPS/V002](https://doi.org/10.5676/EUM_SAF_CM/HOAPS/V002) -->
 * **Provider / Institution**: EUMETSAT Satellite Application Facility on Climate Monitoring (CM SAF) / Deutscher Wetterdienst (DWD)
 * **Web Portal / Data Access**: [http://www.cmsaf.eu/](http://www.cmsaf.eu/) | [https://wui.cmsaf.eu/](https://wui.cmsaf.eu/)
 * **Hugging Face Dataset Mirror**: [https://huggingface.co/datasets/areenvaghasiya12345/cmsaf-ocean-water-flux-1987-2014](https://huggingface.co/datasets/areenvaghasiya12345/cmsaf-ocean-water-flux-1987-2014)

@@ -24,6 +24,7 @@
 * **Product Identifier / DOI**: [10.5676/EUM_SAF_CM/HOAPS/V002](https://doi.org/10.5676/EUM_SAF_CM/HOAPS/V002)
 * **Provider / Institution**: EUMETSAT Satellite Application Facility on Climate Monitoring (CM SAF) / Deutscher Wetterdienst (DWD)
 * **Web Portal / Data Access**: [http://www.cmsaf.eu/](http://www.cmsaf.eu/) | [https://wui.cmsaf.eu/](https://wui.cmsaf.eu/)
+* **Hugging Face Dataset Mirror**: [https://huggingface.co/datasets/areenvaghasiya12345/cmsaf-ocean-water-flux-1987-2014](https://huggingface.co/datasets/areenvaghasiya12345/cmsaf-ocean-water-flux-1987-2014)
 * **Contact Email**: `contact.cmsaf@dwd.de`
 * **Local Data Directories**:
   * `data/precipitation_evaporation_CM_SAF_1987_TO_1999`

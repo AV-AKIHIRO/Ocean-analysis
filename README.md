@@ -54,6 +54,7 @@ This repository implements a **five-box coupled ocean model** representing the w
 │       └── project_proposal.pdf
 │
 ├── data/                                            # 💾 Satellite data & NetCDF files
+│   # Hugging Face Mirror: https://huggingface.co/datasets/areenvaghasiya12345/cmsaf-ocean-water-flux-1987-2014
 │   ├── evaporation_CM_SAF_1987_TO_1999/
 │   ├── evaporation_CM_SAF_2000_TO2014/
 │   ├── precipitation_CM_SAF_1987_TO_1999/

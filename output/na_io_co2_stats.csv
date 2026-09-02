@@ -1,0 +1,11 @@
+Metric,Value,Unit
+Linear fit slope (a),0.311159,dimensionless
+Linear fit intercept (b),0.012312,mmol/m³
+R² (C_IO vs C_NA),0.999508,—
+Pearson r (C_IO vs C_NA),0.999754,—
+p-value (C_IO vs C_NA),0.0,—
+Optimal lag (cross-correlation),0.0,months
+Peak cross-correlation value,0.999754,—
+Increment ratio α (ΔC_IO/ΔC_NA),0.188828,dimensionless
+R² (ΔC_IO vs ΔC_NA),0.685939,—
+Pearson r (ΔC_IO vs ΔC_NA),0.828214,—

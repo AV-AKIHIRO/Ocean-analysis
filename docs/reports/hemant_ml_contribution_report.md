@@ -17,9 +17,9 @@ The training dataset consists of 330 monthly timesteps (January 1987 to December
 * **Feature Table (19 Input Columns)**:
   * **Satellite Freshwater Fluxes ($F_{\text{NA}}, F_{\text{SA}}, F_{\text{SO}}, F_{\text{PO}}, F_{\text{IO}}$)**: Measured in Sverdrups ($\text{Sv}$).
   * **Sea Surface Temperatures ($\text{SST}_{\text{NA}} \dots \text{SST}_{\text{IO}}$)**: Measured in Kelvin ($\text{K}$).
-  * **Atmospheric $\text{CO}_2$ ($p\text{CO}_{2,\text{air}}$)**: Keeling Curve trajectory in $\mu\text{atm}$.
-  * **Seasonality ($\text{month\_sin}, \text{month\_cos}$)**: Cyclical calendar features.
-  * **Air-Sea Disequilibrium ($\text{DISEQ}_i = K_0(\text{SST}_i) \cdot p\text{CO}_{2,\text{air}} - C_i(t-1)$)**: Physics-informed feature measuring carbon concentration imbalance.
+  * **Atmospheric $\text{CO}_2$ ($p\mathrm{CO}_{2,\mathrm{air}}$)**: Keeling Curve trajectory in $\mu\text{atm}$.
+  * **Seasonality (`month_sin`, `month_cos`)**: Cyclical calendar features.
+  * **Air-Sea Disequilibrium ($\mathrm{DISEQ}_i = K_0(\mathrm{SST}_i) \cdot p\mathrm{CO}_{2,\mathrm{air}} - C_i(t-1)$)**: Physics-informed feature measuring carbon concentration imbalance.
   * **Lagged State ($S_i(t-1), C_i(t-1)$)**: Previous month's state for autoregressive prediction.
 * **Target**:
   * Predict **monthly increments** $\Delta S_i(t) = S_i(t) - S_i(t-1)$ and $\Delta C_i(t) = C_i(t) - C_i(t-1)$.

@@ -1,0 +1,11 @@
+======================================================================
+SYMBOLIC REGRESSION RESULTS: NA–IO CO2 RELATIONSHIP
+======================================================================
+
+1. ALGEBRAIC DISCOVERY (R2 = 1.000000):
+   C_IO = 0.016303 (+1.195367e-06 * pCO2_air) (+6.234264e-08 * C_NA pCO2_air)
+
+2. GOVERNING DIFFERENTIAL EQUATION DISCOVERY (R2 = 0.326186):
+   d(C_IO)/dt = 1.707929e-08
+
+3. RECONSTRUCTED TRAJECTORY R2: 0.999999

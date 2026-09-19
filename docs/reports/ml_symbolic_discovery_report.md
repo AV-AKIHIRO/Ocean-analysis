@@ -95,7 +95,10 @@ To create clean, human-readable equations, we plan to align with our mentor on:
    * **Binary Arithmetic**: Addition ($+$), Subtraction ($-$), Multiplication ($\times$), Division ($/$).
    * **Non-linear Functions**: Exponential ($\exp$), Natural Log ($\log$), Trigonometric ($\sin, \cos$).
 2. **Targeted Feature Selection**: Instead of dumping all 36 columns blindly, we will ask the mentor which specific key features ($C_{\mathrm{NA}}, p\mathrm{CO}_{2,\mathrm{air}}, S_{\mathrm{diff}}$) should be included as inputs to ensure the discovered equation remains simple, physically interpretable, and elegant:
-   $$C_{\mathrm{IO}}(t) \approx \alpha \cdot C_{\mathrm{NA}}(t) + \beta \cdot p\mathrm{CO}_{2,\mathrm{air}}(t)$$
+
+   $$
+   C_{\mathrm{IO}}(t) \approx \alpha \cdot C_{\mathrm{NA}}(t) + \beta \cdot p\mathrm{CO}_{2,\mathrm{air}}(t)
+   $$
 
 ### 4.2 Physics-Informed Neural Networks (PINNs)
 We propose implementing a **Physics-Informed Neural Network (PINN)** that enforces physical conservation laws directly inside the neural network loss function:
@@ -104,8 +107,15 @@ $$\mathcal{L}_{\mathrm{PINN}} = \mathcal{L}_{\mathrm{Data}} + \lambda \cdot \mat
 
 #### Loss Components:
 1. **Data Loss ($\mathcal{L}_{\mathrm{Data}}$)**: Mean Squared Error against satellite observations:
-   $$\mathcal{L}_{\mathrm{Data}} = \frac{1}{N}\sum \Big( y_{\mathrm{pred}} - y_{\mathrm{observed}} \Big)^2$$
+
+   $$
+   \mathcal{L}_{\mathrm{Data}} = \frac{1}{N}\sum \Big( y_{\mathrm{pred}} - y_{\mathrm{observed}} \Big)^2
+   $$
+
 2. **Physics Loss ($\mathcal{L}_{\mathrm{Physics}}$)**: Enforces conservation of mass according to the 5-box ODE differential equations:
-   $$\mathcal{L}_{\mathrm{Physics}} = \frac{1}{N}\sum \left| \frac{dC_i}{dt} - \left[ \frac{\gamma_i A_i}{V_i}(K_0 p\mathrm{CO}_{2,\mathrm{air}} - C_i) + \mathrm{Transport}_{ij} \right] \right|^2$$
+
+   $$
+   \mathcal{L}_{\mathrm{Physics}} = \frac{1}{N}\sum \left| \frac{dC_i}{dt} - \left[ \frac{\gamma_i A_i}{V_i}(K_0 p\mathrm{CO}_{2,\mathrm{air}} - C_i) + \mathrm{Transport}_{ij} \right] \right|^2
+   $$
 
 * **Expected Benefits**: Prevents AI models from predicting unphysical values during 2030 projections and injects deep-ocean thermohaline transport constraints into surface ML models.

@@ -1,6 +1,5 @@
-# Hemant's Machine Learning & Symbolic Discovery Contribution Report
+# Machine Learning & Symbolic Discovery Report
 
-**Author**: Hemant Gupta  
 **Project**: Ocean Carbon Sink & Thermohaline Salinity Analysis  
 **Repository**: `Ocean-analysis`  
 **Date**: September 2026  

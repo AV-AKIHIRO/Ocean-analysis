@@ -35,7 +35,9 @@ When performing symbolic regression, a **2nd-degree polynomial combination** tak
 ### 2.2 Result 1: Simple 2-Term Interpretable Equation (NA–IO Dynamic Coupling)
 By restricting feature search to atmospheric forcing and North Atlantic carbon, the symbolic engine discovered a clean, highly interpretable 2-term equation:
 
-$$C_{\mathrm{IO}} = 0.016303 + (1.195 \times 10^{-6} \cdot p\mathrm{CO}_{2,\mathrm{air}}) + (6.234 \times 10^{-8} \cdot C_{\mathrm{NA}} \cdot p\mathrm{CO}_{2,\mathrm{air}})$$
+```math
+C_{\mathrm{IO}} = 0.016303 + (1.195 \times 10^{-6} \cdot p\mathrm{CO}_{2,\mathrm{air}}) + (6.234 \times 10^{-8} \cdot C_{\mathrm{NA}} \cdot p\mathrm{CO}_{2,\mathrm{air}})
+```
 
 * **Accuracy**: **$R^2 = 1.000000$** ($100\%$ Variance Explained), **$\mathrm{RMSE} = 0.0000\ \mathrm{mmol/m}^3$**.
 * **Physical Meaning**: $p\mathrm{CO}_{2,\mathrm{air}}$ represents the global atmospheric driver pushing carbon into both basins simultaneously. The product term $(C_{\mathrm{NA}} \cdot p\mathrm{CO}_{2,\mathrm{air}})$ captures the joint co-evolution of Atlantic and Indian Ocean carbon uptake.
@@ -45,7 +47,9 @@ $$C_{\mathrm{IO}} = 0.016303 + (1.195 \times 10^{-6} \cdot p\mathrm{CO}_{2,\math
 ### 2.3 Result 2: Full-Feature Multi-Dataset Equation (36 Inputs $\rightarrow$ 702 Terms)
 When feeding ALL 36 available dataset columns from simulation and satellite files, Lasso sparse selection identified density-gradient interaction terms:
 
-$$C_{\mathrm{IO}} = 0.016748 - 1.305\times 10^{-5} (S_{\mathrm{diff, NA-IO}} S_{\mathrm{diff, SA-IO}}) - 1.964\times 10^{-5} (S_{\mathrm{diff, NA-IO}} S_{\mathrm{diff, SO-IO}}) + 2.503\times 10^{-6} (S_{\mathrm{diff, SA-IO}}^2) + \dots$$
+```math
+C_{\mathrm{IO}} = 0.016748 - 1.305\times 10^{-5} (S_{\mathrm{diff, NA-IO}} S_{\mathrm{diff, SA-IO}}) - 1.964\times 10^{-5} (S_{\mathrm{diff, NA-IO}} S_{\mathrm{diff, SO-IO}}) + 2.503\times 10^{-6} (S_{\mathrm{diff, SA-IO}}^2) + \dots
+```
 
 * **Full-Feature Fit Accuracy**: **$R^2 = 0.999949$** ($\mathrm{RMSE} = 0.000158\ \mathrm{mmol/m}^3$)
 * **Reconstructed Trajectory Accuracy**: **$R^2 = 0.999934$**
@@ -103,7 +107,9 @@ To create clean, human-readable equations, we plan to align with our mentor on:
 ### 4.2 Physics-Informed Neural Networks (PINNs)
 We propose implementing a **Physics-Informed Neural Network (PINN)** that enforces physical conservation laws directly inside the neural network loss function:
 
-$$\mathcal{L}_{\mathrm{PINN}} = \mathcal{L}_{\mathrm{Data}} + \lambda \cdot \mathcal{L}_{\mathrm{Physics}}$$
+```math
+\mathcal{L}_{\mathrm{PINN}} = \mathcal{L}_{\mathrm{Data}} + \lambda \cdot \mathcal{L}_{\mathrm{Physics}}
+```
 
 #### Loss Components:
 1. **Data Loss ($\mathcal{L}_{\mathrm{Data}}$)**: Mean Squared Error against satellite observations:

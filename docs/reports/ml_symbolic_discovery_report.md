@@ -89,10 +89,63 @@ Using Random Forest feature importance algorithms, we determined which physical 
 
 ---
 
-## 4. Next Step Proposals & Future Work
+## 4. SHAP Explainability Analysis (`scripts/shap_analysis.py`)
 
-### 4.1 Custom Mathematical Operators & Feature Selection Strategy for Symbolic Regression
-The full 702-term polynomial equation produces complex scientific notation coefficients ($1.305 \times 10^{-5}$) that can be difficult to present to mentors. 
+SHAP (SHapley Additive exPlanations) goes beyond basic feature importance by computing the **exact contribution of each feature to every individual prediction**. While Gini importance (Section 3) shows which features are globally important, SHAP shows **how** and **in which direction** each feature pushes the prediction.
+
+### 4.1 SHAP for Salinity Predictions
+
+#### Random Forest — Salinity
+![RF SHAP Summary Salinity](../../output/shap_rf_summary_salinity.png)
+*Figure 4: SHAP beeswarm plot — Random Forest — Salinity. Each dot is one monthly prediction. Red = high feature value, blue = low.*
+
+![RF SHAP Bar Salinity](../../output/shap_rf_bar_salinity.png)
+*Figure 5: Mean |SHAP| global importance — Random Forest — Salinity.*
+
+**Key Findings**:
+* `F_NA` (North Atlantic Freshwater Flux) is the dominant driver (**highest mean |SHAP|**), confirming that Atlantic evaporation-precipitation directly controls salinity changes.
+* `F_SA` and `F_IO` follow as the next most influential features, matching the physical expectation that basin-specific freshwater forcing is the primary salinity driver.
+
+#### XGBoost — Salinity
+![XGBoost SHAP Summary Salinity](../../output/shap_xgb_summary_salinity.png)
+*Figure 6: SHAP beeswarm plot — XGBoost — Salinity.*
+
+![XGBoost SHAP Bar Salinity](../../output/shap_xgb_bar_salinity.png)
+*Figure 7: Mean |SHAP| global importance — XGBoost — Salinity.*
+
+![XGBoost Dependence F_NA Salinity](../../output/shap_xgb_dependence_F_NA_salinity.png)
+*Figure 8: SHAP dependence plot for F_NA — shows how increasing North Atlantic freshwater flux shifts salinity predictions.*
+
+### 4.2 SHAP for CO2 Predictions
+
+#### Random Forest — CO2
+![RF SHAP Summary CO2](../../output/shap_rf_summary_co2.png)
+*Figure 9: SHAP beeswarm plot — Random Forest — CO2.*
+
+![RF SHAP Bar CO2](../../output/shap_rf_bar_co2.png)
+*Figure 10: Mean |SHAP| global importance — Random Forest — CO2.*
+
+**Key Findings**:
+* Air-Sea Disequilibrium features (`DISEQ_IO`, `DISEQ_PO`, `DISEQ_SO`) and atmospheric CO2 (`pCO2_air`) dominate — confirming that the chemical imbalance between atmosphere and ocean surface is the primary driver of carbon uptake.
+* Lagged CO2 concentrations (`C_SO_lag`) also contribute significantly, showing that the model captures the autoregressive nature of carbon dynamics.
+* Sea Surface Temperature features (`SST_NA`, `SST_SA`) appear prominently in XGBoost, reflecting the temperature-dependent solubility effect (Weiss K0 formulation).
+
+#### XGBoost — CO2
+![XGBoost SHAP Summary CO2](../../output/shap_xgb_summary_co2.png)
+*Figure 11: SHAP beeswarm plot — XGBoost — CO2.*
+
+![XGBoost SHAP Bar CO2](../../output/shap_xgb_bar_co2.png)
+*Figure 12: Mean |SHAP| global importance — XGBoost — CO2.*
+
+![XGBoost Dependence SST_NA CO2](../../output/shap_xgb_dependence_SST_NA_co2.png)
+*Figure 13: SHAP dependence plot for SST_NA — shows that higher North Atlantic SST reduces CO2 uptake (warm water holds less dissolved gas).*
+
+---
+
+## 5. Next Step Proposals & Future Work
+
+### 5.1 Custom Mathematical Operators & Feature Selection Strategy for Symbolic Regression
+The full 702-term polynomial equation produces complex scientific notation coefficients ($1.305 \times 10^{-5}$) that can be difficult to present to mentors.
 
 To create clean, human-readable equations, we plan to align with our mentor on:
 1. **Explicit Operator Selection**: Define a restricted set of mathematical operators in PySR / Symbolic Regressor:
@@ -104,7 +157,7 @@ To create clean, human-readable equations, we plan to align with our mentor on:
    C_{\mathrm{IO}}(t) \approx \alpha \cdot C_{\mathrm{NA}}(t) + \beta \cdot p\mathrm{CO}_{2,\mathrm{air}}(t)
    ```
 
-### 4.2 Physics-Informed Neural Networks (PINNs)
+### 5.2 Physics-Informed Neural Networks (PINNs)
 We propose implementing a **Physics-Informed Neural Network (PINN)** that enforces physical conservation laws directly inside the neural network loss function:
 
 ```math
@@ -124,4 +177,25 @@ We propose implementing a **Physics-Informed Neural Network (PINN)** that enforc
    \mathcal{L}_{\mathrm{Physics}} = \frac{1}{N}\sum \left| \frac{dC_i}{dt} - \left[ \frac{\gamma_i A_i}{V_i}(K_0 p\mathrm{CO}_{2,\mathrm{air}} - C_i) + \mathrm{Transport}_{ij} \right] \right|^2
    ```
 
+#### Implementation Plan:
+1. Build a small PyTorch neural network (3-4 hidden layers) that takes time + observable features as input and predicts basin CO2 concentrations.
+2. Use **automatic differentiation** (`torch.autograd.grad`) to compute dC/dt from the network output, then penalize deviation from the known ODE.
+3. Train with combined data + physics loss, tuning the weighting parameter $\lambda$.
+4. Compare PINN extrapolation accuracy vs standard ML models for 2030 projections.
+
 * **Expected Benefits**: Prevents AI models from predicting unphysical values during 2030 projections and injects deep-ocean thermohaline transport constraints into surface ML models.
+
+### 5.3 SINDy — Sparse Identification of Non-linear Dynamics
+SINDy is an alternative to symbolic regression that directly discovers the **governing differential equation** from time-series data, rather than an algebraic relationship.
+
+#### How SINDy Differs from Symbolic Regression:
+* **Symbolic Regression** discovers: $C_{\mathrm{IO}} = f(C_{\mathrm{NA}}, p\mathrm{CO}_{2,\mathrm{air}}, \dots)$ (algebraic, static)
+* **SINDy** discovers: $\frac{dC_{\mathrm{IO}}}{dt} = g(C_{\mathrm{NA}}, S_{\mathrm{diff}}, p\mathrm{CO}_{2,\mathrm{air}}, \dots)$ (differential, dynamic)
+
+#### Implementation Plan:
+1. Install PySINDy library and prepare time-series data from simulation CSV.
+2. Build a candidate function library (polynomials, trigonometric, exponential terms).
+3. Fit SINDy using sparse regression (similar to Lasso) on the numerically computed derivative dC/dt.
+4. Compare the discovered ODE against the original paper's hand-derived equations to validate or discover new dynamics.
+
+* **Expected Impact**: If SINDy recovers the same ODE form as the original physics paper, it validates our model. If it discovers additional terms, that represents a genuine scientific contribution.

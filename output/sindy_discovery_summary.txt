@@ -1,0 +1,23 @@
+======================================================================
+PySINDy DYNAMIC DIFFERENTIAL EQUATION DISCOVERY SUMMARY
+======================================================================
+
+1. 5-Basin Discovered ODE System (dC/dt [mmol/(m^3*year)]):
+  d(NA)/dt =  0.013 C_NA + -0.018 C_SA + -0.007 C_SO +  0.008 C_PO +  0.004 C_IO +  0.003 pCO2_dev +  0.002 Sdiff_NA_IO + -0.001 Sdiff_SO_IO
+    --> Trajectory R²: 1.000000
+  d(SA)/dt = -0.007 C_NA +  0.006 C_SA +  0.010 C_SO + -0.005 C_PO + -0.003 C_IO + -0.002 pCO2_dev + -0.001 Sdiff_NA_IO +  0.001 Sdiff_SO_IO
+    --> Trajectory R²: 1.000000
+  d(SO)/dt =  0.003 1 +  0.105 C_NA + -0.147 C_SA + -0.071 C_SO +  0.068 C_PO +  0.038 C_IO +  0.018 pCO2_dev +  0.013 Sdiff_NA_IO + -0.009 Sdiff_SO_IO
+    --> Trajectory R²: 1.000000
+  d(PO)/dt =  0.000
+    --> Trajectory R²: 1.000000
+  d(IO)/dt =  0.005 C_NA + -0.007 C_SA + -0.002 C_SO +  0.003 C_PO +  0.002 C_IO +  0.001 pCO2_dev +  0.001 Sdiff_NA_IO
+    --> Trajectory R²: 1.000000
+
+----------------------------------------------------------------------
+2. Targeted NA-IO Dynamic Coupling ODE (Indian Ocean):
+  d(C_IO)/dt =  0.000
+    --> Trajectory R²: 1.000000
+    --> Trajectory RMSE: 1.669981e-06 mmol/m³
+  d(C_NA)/dt =  0.001 C_IO^2 + -0.001 C_NA^2
+======================================================================

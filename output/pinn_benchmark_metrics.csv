@@ -1,0 +1,3 @@
+Model,Test_R2,Test_RMSE_mmol_m3,Mass_Conservation_Preserved
+Standard Neural Network (Unconstrained),-33.42001868910249,0.017557844305894504,No (Drifts in 2030 Projection)
+Physics-Informed Neural Network (PINN),-13.995157841688684,0.011476439700095285,Yes (Governed by ODE Residual)

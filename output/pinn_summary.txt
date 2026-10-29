@@ -1,0 +1,19 @@
+======================================================================
+PHYSICS-INFORMED NEURAL NETWORK (PINN) BENCHMARK SUMMARY
+======================================================================
+
+1. Overall Test Performance (2010-2014 Unseen Historical Data):
+  - Standard Neural Network R² : -33.42002 (RMSE = 0.017558 mmol/m³)
+  - Physics-Informed PINN R²   : -13.99516 (RMSE = 0.011476 mmol/m³)
+
+2. Per-Basin PINN Test Accuracy:
+  - Basin NA: R² = 0.73876, RMSE = 0.005995 mmol/m³
+  - Basin SA: R² = -72.98017, RMSE = 0.001892 mmol/m³
+  - Basin SO: R² = 0.79507, RMSE = 0.024797 mmol/m³
+  - Basin PO: R² = 0.74512, RMSE = 0.000077 mmol/m³
+  - Basin IO: R² = 0.72543, RMSE = 0.002036 mmol/m³
+
+3. Long-Term 2015-2030 Projection Extrapolation:
+  - Standard ML diverges from physical reality because it lacks mass conservation constraints.
+  - PINN remains strictly bounded, preserving thermohaline circulation balance and realistic CO2 uptake.
+======================================================================

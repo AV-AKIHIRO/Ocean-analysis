@@ -12,6 +12,8 @@ The core findings, mathematical derivations, and machine learning benchmarks are
    *Comprehensive milestone implementation report detailing the mathematical formulation, calibration against WOA hydrography, and integration with satellite freshwater forcing.*
 2. 📊 **[Physics vs ML Ocean Prediction Report (Markdown)](docs/reports/physics_vs_ml_ocean_prediction_report.md)**
    *Full benchmark comparing the 5-box coupled ODE system against 6 machine learning architectures (Ridge, Linear Regression, Random Forest, XGBoost, LSTM, Transformer) with autoregressive projections to 2030.*
+3. 🔬 **[Machine Learning & Symbolic Discovery Report (Markdown)](docs/reports/ml_symbolic_discovery_report.md)**
+   *Deep-dive ML report covering Custom-Operator Symbolic Regression (Pareto Complexity), PySINDy Dynamic Differential Equation Discovery, Physics-Informed Neural Networks (PINN), Bayesian Uncertainty Quantification (UQ), and SHAP Model Explainability.*
 
 ---
 
@@ -72,7 +74,12 @@ This repository implements a **five-box coupled ocean model** representing the w
 │   ├── co2_salinity_simulation.py                   # Full 10-D coupled CO2 + Salinity ODE simulation
 │   ├── ml_prepare_data.py                           # Feature engineering & DISEQ computation
 │   ├── ml_train_compare.py                          # Trains & evaluates 6 ML models
-│   └── ml_forecast.py                               # Autoregressive rollout & 2030 projections
+│   ├── ml_forecast.py                               # Autoregressive rollout & 2030 projections
+│   ├── shap_analysis.py                             # SHAP model explainability (RF & XGBoost)
+│   ├── ocean_symbolic_operators.py                  # Custom-operator Pareto symbolic regression
+│   ├── ocean_sindy_discovery.py                     # PySINDy continuous dynamical ODE discovery
+│   ├── pinn_ocean_model.py                          # Physics-Informed Neural Network (PINN) + 2030 rollout
+│   └── pinn_uncertainty_quantification.py           # Bayesian MC Dropout 95% uncertainty forecasting
 │
 └── output/                                          # 📈 Generated figures, tables & model weights
     ├── *.png                                        # Comparison timeseries, R² heatmaps, forecasts
@@ -99,11 +106,28 @@ To reproduce the analysis from raw satellite data to final ML predictions:
    ```bash
    python scripts/ml_prepare_data.py
    ```
-4. **Train & Benchmark ML Models**:
+4. **Train & Benchmark ML Baseline Models**:
    ```bash
    python scripts/ml_train_compare.py
    ```
-5. **Generate 2030 Projections**:
+5. **Run SHAP Explainability Analysis**:
    ```bash
-   python scripts/ml_forecast.py
+   python scripts/shap_analysis.py
    ```
+6. **Discover Human-Interpretable Symbolic Formulas**:
+   ```bash
+   python scripts/ocean_symbolic_operators.py
+   ```
+7. **Discover Continuous Governing ODEs with PySINDy**:
+   ```bash
+   python scripts/ocean_sindy_discovery.py
+   ```
+8. **Train Physics-Informed Neural Network (PINN) & Project to 2030**:
+   ```bash
+   python scripts/pinn_ocean_model.py
+   ```
+9. **Quantify Climate Projection Uncertainty (95% CI)**:
+   ```bash
+   python scripts/pinn_uncertainty_quantification.py
+   ```
+

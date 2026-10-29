@@ -1,0 +1,51 @@
+===========================================================================
+PARETO SYMBOLIC REGRESSION DISCOVERY REPORT (OPERATOR SEARCH)
+===========================================================================
+
+[Level 1: Direct Proportional Ratio]
+  Complexity Level: 1
+  Plain Formula   : C_IO = 1.1748 * C_NA
+  LaTeX Format    : C_{\mathrm{IO}} = 1.1748 \cdot C_{\mathrm{NA}}
+  Trajectory R²   : -6.709881 (-670.9881% Variance Explained)
+  Trajectory RMSE : 0.060818 mmol/m³
+  Physical Meaning: Single parameter linear scaling between North Atlantic and Indian Ocean
+---------------------------------------------------------------------------
+[Level 2: Linear Affine Coupling]
+  Complexity Level: 2
+  Plain Formula   : C_IO = 0.3110 * C_NA + 12.3143
+  LaTeX Format    : C_{\mathrm{IO}} = 0.3110 \cdot C_{\mathrm{NA}} + 12.3143
+  Trajectory R²   : 0.999508 (99.9508% Variance Explained)
+  Trajectory RMSE : 0.000486 mmol/m³
+  Physical Meaning: Linear coupling with basal concentration intercept
+---------------------------------------------------------------------------
+[Level 3: Bivariate Climate Driver (RECOMMENDED)]
+  Complexity Level: 3
+  Plain Formula   : C_IO = 0.0536 * C_NA + 0.001051 * pCO2_air + 15.5951
+  LaTeX Format    : C_{\mathrm{IO}} = 0.0536 \cdot C_{\mathrm{NA}} + 0.00105 \cdot p\mathrm{CO}_{2,\mathrm{air}} + 15.5951
+  Trajectory R²   : 1.000000 (100.0000% Variance Explained)
+  Trajectory RMSE : 0.000008 mmol/m³
+  Physical Meaning: Separates local Atlantic deep supply from global Keeling atmospheric absorption
+---------------------------------------------------------------------------
+[Level 4: Product Interaction Operator]
+  Complexity Level: 4
+  Plain Formula   : C_IO = 0.0536 * C_NA + 0.00105 * pCO2_air + -0.001102 * (C_NA * pCO2_air * 10^-4) + 15.5953
+  LaTeX Format    : C_{\mathrm{IO}} = 0.0536 C_{\mathrm{NA}} + 0.00105 p\mathrm{CO}_{2,\mathrm{air}} + -0.00110\times 10^{-4} (C_{\mathrm{NA}} \cdot p\mathrm{CO}_{2,\mathrm{air}}) + 15.5953
+  Trajectory R²   : 1.000000 (100.0000% Variance Explained)
+  Trajectory RMSE : 0.000008 mmol/m³
+  Physical Meaning: Multiplicative coupling capturing joint saturation
+---------------------------------------------------------------------------
+[Level 5: Exponential Thermohaline Density Operator]
+  Complexity Level: 5
+  Plain Formula   : C_IO = 0.0536 * C_NA + 0.00105 * pCO2_air + 0.002872 * exp(S_NA - S_IO) + -0.004710 * (S_SO - S_IO) + 15.5909
+  LaTeX Format    : C_{\mathrm{IO}} = 0.0536 C_{\mathrm{NA}} + 0.00105 p\mathrm{CO}_{2,\mathrm{air}} + 0.00287 e^{S_{\mathrm{NA}}-S_{\mathrm{IO}}} + -0.00471 (S_{\mathrm{SO}}-S_{\mathrm{IO}}) + 15.5909
+  Trajectory R²   : 1.000000 (100.0000% Variance Explained)
+  Trajectory RMSE : 0.000007 mmol/m³
+  Physical Meaning: Incorporates non-linear density advection driven by salinity differences
+---------------------------------------------------------------------------
+
+RECOMMENDED FORMULA FOR MENTOR PRESENTATION:
+  C_IO = 0.0536 * C_NA + 0.001051 * pCO2_air + 15.5951
+  R² = 1.000000, RMSE = 0.000008 mmol/m³
+  Why: Balances exceptional accuracy (>99.9% variance explained) with clean
+       bivariate simplicity (only 2 intuitive input variables, no high-degree exponents).
+===========================================================================

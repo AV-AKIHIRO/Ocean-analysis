@@ -13,7 +13,7 @@ The core findings, mathematical derivations, and machine learning benchmarks are
 2. 📊 **[Physics vs ML Ocean Prediction Report (Markdown)](docs/reports/physics_vs_ml_ocean_prediction_report.md)**
    *Full benchmark comparing the 5-box coupled ODE system against 6 machine learning architectures (Ridge, Linear Regression, Random Forest, XGBoost, LSTM, Transformer) with autoregressive projections to 2030.*
 3. 🔬 **[Machine Learning & Symbolic Discovery Report (Markdown)](docs/reports/ml_symbolic_discovery_report.md)**
-   *Deep-dive ML report covering Custom-Operator Symbolic Regression (Pareto Complexity), PySINDy Dynamic Differential Equation Discovery, Physics-Informed Neural Networks (PINN), Bayesian Uncertainty Quantification (UQ), and SHAP Model Explainability.*
+   *Comprehensive master ML & climate physics report covering Custom-Operator Symbolic Regression (Pareto Frontier), PySINDy Dynamic ODE Discovery, 10D Coupled Salinity-Carbon PINN, Bayesian Uncertainty Quantification (UQ), IPCC AR6 Climate Scenario Projections (2015–2060), and AMOC Bifurcation / Miocene Tipping Point Analysis.*
 
 ---
 
@@ -79,7 +79,10 @@ This repository implements a **five-box coupled ocean model** representing the w
 │   ├── ocean_symbolic_operators.py                  # Custom-operator Pareto symbolic regression
 │   ├── ocean_sindy_discovery.py                     # PySINDy continuous dynamical ODE discovery
 │   ├── pinn_ocean_model.py                          # Physics-Informed Neural Network (PINN) + 2030 rollout
-│   └── pinn_uncertainty_quantification.py           # Bayesian MC Dropout 95% uncertainty forecasting
+│   ├── pinn_uncertainty_quantification.py           # Bayesian MC Dropout 95% uncertainty forecasting
+│   ├── pinn_coupled_salinity_carbon.py              # Coupled 10D Salinity-Carbon PINN (bi-directional)
+│   ├── climate_scenarios_ipcc.py                    # IPCC AR6 Scenario forward projections (2015-2060)
+│   └── amoc_tipping_point_analysis.py               # AMOC stability, Miocene Amazon reversal & CSD
 │
 └── output/                                          # 📈 Generated figures, tables & model weights
     ├── *.png                                        # Comparison timeseries, R² heatmaps, forecasts
@@ -129,5 +132,17 @@ To reproduce the analysis from raw satellite data to final ML predictions:
 9. **Quantify Climate Projection Uncertainty (95% CI)**:
    ```bash
    python scripts/pinn_uncertainty_quantification.py
+   ```
+10. **Train Coupled 10-Dimensional Salinity-Carbon PINN**:
+   ```bash
+   python scripts/pinn_coupled_salinity_carbon.py
+   ```
+11. **Simulate IPCC AR6 Climate Scenarios (2015–2060)**:
+   ```bash
+   python scripts/climate_scenarios_ipcc.py
+   ```
+12. **Analyze AMOC Bifurcation, Miocene Tipping & Early Warning Signals**:
+   ```bash
+   python scripts/amoc_tipping_point_analysis.py
    ```
 
